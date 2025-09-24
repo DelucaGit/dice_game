@@ -8,10 +8,10 @@ public class Main {
     public static void main(String[] args) {
         boolean gameIsRunning = true;
 
+        Scanner scanner = new Scanner(System.in);
 
         while(gameIsRunning){
             // INSTANTER //
-            Scanner scanner = new Scanner(System.in);
             // INSTANTER //
 
             System.out.println("Player One! Nice to meet you. What is your first name?");
@@ -88,7 +88,11 @@ public class Main {
                 }
             }
         }
+
+        scanner.close();
     }
+
+
 
     static Random random = new Random();
 
