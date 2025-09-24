@@ -8,10 +8,10 @@ public class Main {
     public static void main(String[] args) {
         boolean gameIsRunning = true;
 
+
         while(gameIsRunning){
             // INSTANTER //
             Scanner scanner = new Scanner(System.in);
-            Random random = new Random();
             // INSTANTER //
 
             System.out.println("Player One! Nice to meet you. What is your first name?");
@@ -38,16 +38,29 @@ public class Main {
             String input = scanner.nextLine().toLowerCase();
 
 
-
+            // First player turn
             switch(input){
                 case "play":{
-
+                    int playerOneFirstThrow = throwDice(1,7);
+                    int playerOneSecondThrow = throwDice(1,7);
+                    int playerOneResults = playerOneFirstThrow + playerOneSecondThrow;
+                    break;
+                }
+                case "quit":{
+                    System.out.println("Quitting game...");
+                    gameIsRunning = false;
+                    break;
                 }
             }
 
         }
     }
 
+    static Random random = new Random();
 
+    public static int throwDice(int minimum, int maximum){
+        int dice = random.nextInt(minimum,maximum);
+        return dice;
+    }
 
 }
