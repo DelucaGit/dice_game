@@ -29,7 +29,7 @@ public class Main {
 
             // INSTANTER //
             Player playerOne = new Player(playerOneFirstName, playerOneLastName);
-            Player playerTwo = new Player(playerOneFirstName, playerOneLastName);
+            Player playerTwo = new Player(playerTwoFirstName, playerTwoLastName);
             // INSTANTER //
 
 
@@ -39,11 +39,15 @@ public class Main {
 
 
             // First player turn
+            int playerOneResults = 0;
             switch(input){
                 case "play":{
-                    int playerOneFirstThrow = throwDice(1,7);
-                    int playerOneSecondThrow = throwDice(1,7);
-                    int playerOneResults = playerOneFirstThrow + playerOneSecondThrow;
+                     int playerOneFirstThrow = throwDice(1,7);
+                    System.out.println("First throw! " + playerOneFirstThrow + " points!") ;
+                      int playerOneSecondThrow = throwDice(1,7);
+                    System.out.println("Second throw! " + playerOneSecondThrow + " points!") ;
+                    playerOneResults = playerOneFirstThrow + playerOneSecondThrow;
+                    System.out.println("Player one has " + playerOneResults + " point/s");
                     break;
                 }
                 case "quit":{
@@ -53,6 +57,36 @@ public class Main {
                 }
             }
 
+            // Second player turn
+            System.out.println("Player two! Write play in order to throw - or write quit in order to shut down the game (but you'll lose)");
+            input = scanner.nextLine().toLowerCase();
+
+
+            int playerTwoResults = 0;
+            switch(input){
+                case "play":{
+                    int playerTwoFirstThrow = throwDice(1,7);
+                    System.out.println("First throw! " + playerTwoFirstThrow + " points!") ;
+                    int playerTwoSecondThrow = throwDice(1,7);
+                    System.out.println("Second throw! " + playerTwoSecondThrow + " points!") ;
+                    playerTwoResults = playerTwoFirstThrow + playerTwoSecondThrow;
+                    System.out.println("Player two has " + playerTwoResults  + " point/s") ;
+
+                    if(playerOneResults > playerTwoResults ){
+                        System.out.println("The winner is " + playerOne.getFullName());
+                    }
+                    else if(playerTwoResults > playerOneResults){
+                        System.out.println("The winner is " + playerTwo.getFullName());
+                    }
+                    else System.out.println("It's a tie!");
+                    gameIsRunning = false;
+                }
+                case "quit":{
+                    System.out.println("Quitting game...");
+                    gameIsRunning = false;
+                    break;
+                }
+            }
         }
     }
 
