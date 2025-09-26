@@ -71,8 +71,9 @@ public class Game {
                     }
                     case "quit":{
                         System.out.println("Quitting game...");
+                        playTurn = false;
                         gameIsRunning = false;
-                        break;
+                        return;
                     }
                 }
 
@@ -125,8 +126,10 @@ public class Game {
                         System.out.println("Quitting game...");
                         playerOne.resetPoints();
                         playerTwo.resetPoints();
+
+                        playTurn = false;
                         gameIsRunning = false;
-                        break;
+                        return;
                     }
                 }
             }
