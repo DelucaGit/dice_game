@@ -6,33 +6,45 @@ public class Game {
     Scanner scanner = new Scanner(System.in);
     boolean gameIsRunning = true;
 
+    public String askForName(String message){
+        String name = "";
+        boolean isValid = false;
+
+        while(!isValid){
+            System.out.println(message);
+            name = scanner.nextLine();
+            try{
+                if(name.trim().isEmpty()){
+                    throw new Exception("Name can not be empty, please write again.");
+                }
+                isValid = true;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return name;
+    }
+
     public void run(){
 
-        System.out.println("Player One! Nice to meet you. What is your first name?");
-        String playerOneFirstName = scanner.nextLine();
-        System.out.println("Wow! " + playerOneFirstName + " is a good name! What is your second name?");
-        String playerOneLastName = scanner.nextLine();
-        System.out.println("Welcome to the game, " + playerOneFirstName + " " + playerOneLastName + "!");
+        String playerOneFirstName = askForName("Welcome player ONE. What is your first name?:");
+        String playerOneLastName = askForName("Nice!. What is your last name?:");
+        String playerTwoFirstName = askForName("Welcome player TWO. What is your first name?:");
+        String playerTwoLastName = askForName("Nice!. What is your last name?:");
 
-
-        System.out.println("Player Two! Your turn! What is your first name?" );
-        String playerTwoFirstName = scanner.nextLine();
-        System.out.println("Okay, your name isn't that bad either " + playerTwoFirstName + ". What is your last name?") ;
-        String playerTwoLastName = scanner.nextLine();
-        System.out.println(playerTwoFirstName + " " + playerTwoLastName + " Welcome to the game too!");
 
         // INSTANTER //
         Player playerOne = new Player();
-        playerOne.setFirstName(playerOneFirstName);
-        playerOne.setLastName(playerOneLastName);
         Player playerTwo = new Player();
-        playerTwo.setFirstName(playerTwoFirstName);
-        playerTwo.setLastName(playerTwoLastName);
         // INSTANTER //
 
-        while(gameIsRunning){
-            // INSTANTER //
-            // INSTANTER //
+        playerOne.setFirstName(playerOneFirstName);
+        playerOne.setLastName(playerOneLastName);
+
+        playerTwo.setFirstName(playerTwoFirstName);
+        playerTwo.setLastName(playerTwoLastName);
+
+        while(gameIsRunning){            // INSTANTER //
 
 
             boolean playTurn = true;
