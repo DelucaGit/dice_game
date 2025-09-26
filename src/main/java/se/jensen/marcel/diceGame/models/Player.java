@@ -5,20 +5,24 @@ public class Player {
     String lastName;
     int points = 0;
 
-    public Player(String firstName, String lastName){
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
-        this.lastName = lastName;
-
     }
 
-
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getFullName(){
         return this.firstName + " " + this.lastName;
     }
 
-    public void addPoints(){
-        this.points++;
+    public void addPoints(int points){
+        this.points += points;
+    }
+
+    public void resetPoints(){
+        this.points = 0;
     }
 
     public int getPoints(){

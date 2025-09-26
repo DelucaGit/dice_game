@@ -8,28 +8,32 @@ public class Game {
 
     public void run(){
 
+        System.out.println("Player One! Nice to meet you. What is your first name?");
+        String playerOneFirstName = scanner.nextLine();
+        System.out.println("Wow! " + playerOneFirstName + " is a good name! What is your second name?");
+        String playerOneLastName = scanner.nextLine();
+        System.out.println("Welcome to the game, " + playerOneFirstName + " " + playerOneLastName + "!");
+
+
+        System.out.println("Player Two! Your turn! What is your first name?" );
+        String playerTwoFirstName = scanner.nextLine();
+        System.out.println("Okay, your name isn't that bad either " + playerTwoFirstName + ". What is your last name?") ;
+        String playerTwoLastName = scanner.nextLine();
+        System.out.println(playerTwoFirstName + " " + playerTwoLastName + " Welcome to the game too!");
+
+        // INSTANTER //
+        Player playerOne = new Player();
+        playerOne.setFirstName(playerOneFirstName);
+        playerOne.setLastName(playerOneLastName);
+        Player playerTwo = new Player();
+        playerTwo.setFirstName(playerTwoFirstName);
+        playerTwo.setLastName(playerTwoLastName);
+        // INSTANTER //
 
         while(gameIsRunning){
             // INSTANTER //
             // INSTANTER //
 
-            System.out.println("Player One! Nice to meet you. What is your first name?");
-            String playerOneFirstName = scanner.nextLine();
-            System.out.println("Wow! " + playerOneFirstName + " is a good name! What is your second name?");
-            String playerOneLastName = scanner.nextLine();
-            System.out.println("Welcome to the game, " + playerOneFirstName + " " + playerOneLastName + "!");
-
-
-            System.out.println("Player Two! Your turn! What is your first name?" );
-            String playerTwoFirstName = scanner.nextLine();
-            System.out.println("Okay, your name isn't that bad either " + playerTwoFirstName + ". What is your last name?") ;
-            String playerTwoLastName = scanner.nextLine();
-            System.out.println(playerTwoFirstName + " " + playerTwoLastName + " Welcome to the game too!");
-
-            // INSTANTER //
-            Player playerOne = new Player(playerOneFirstName, playerOneLastName);
-            Player playerTwo = new Player(playerTwoFirstName, playerTwoLastName);
-            // INSTANTER //
 
             boolean playTurn = true;
 
@@ -48,6 +52,7 @@ public class Game {
                         System.out.println("First throw! " + playerOneFirstThrow + " points!") ;
                         int playerOneSecondThrow = Dice.throwDice();
                         System.out.println("Second throw! " + playerOneSecondThrow + " points!") ;
+                        playerOne.addPoints(playerOneFirstThrow + playerOneSecondThrow) ;
                         playerOneResults = playerOneFirstThrow + playerOneSecondThrow;
                         System.out.println("Player one has " + playerOneResults + " point/s");
                         break;
@@ -72,6 +77,7 @@ public class Game {
                         int playerTwoSecondThrow = Dice.throwDice();
                         System.out.println("Second throw! " + playerTwoSecondThrow + " points!") ;
                         playerTwoResults = playerTwoFirstThrow + playerTwoSecondThrow;
+                        playerTwo.addPoints(playerTwoResults);
                         System.out.println("Player two has " + playerTwoResults  + " point/s") ;
 
                         if(playerOneResults > playerTwoResults ){
@@ -82,16 +88,31 @@ public class Game {
                         }
                         else System.out.println("It's a tie!");
 
+
+
+                        System.out.println("-----ROUND RESULTS-----");
+                        System.out.println(playerOne.getFullName() + " got " + playerOneResults + " point/s this round");
+                        System.out.println(playerTwo.getFullName() + " got " + playerTwoResults + " point/s this round");
+                        System.out.println("-----GAME RESULTS------");
+                        System.out.println(playerOne.getFullName() + " has a total of " + playerOne.getPoints() + " point/s in this game");
+                        System.out.println(playerTwo.getFullName() + " has a total of " + playerTwo.getPoints() + " point/s in this game");
+                        System.out.println("-----------------------");
                         System.out.println("Do you want to play a new round? y/n");
                         input = scanner.nextLine().toLowerCase();
-                        if(input ==  "y" || input == "yes"){
+                        if(input.equals("y") || input.equals("yes")){
                             break;
+                        }
+                        else if(input.equals("n") || input.equals("no")){
+                            playTurn = false;
+                            gameIsRunning = false;
+                            System.out.println("Shutting game...");
                         }
                         break;
                     }
                     case "quit":{
                         System.out.println("Quitting game...");
-                        System.out.println(playerOne.getFullName() + " won the game");
+                        playerOne.resetPoints();
+                        playerTwo.resetPoints();
                         gameIsRunning = false;
                         break;
                     }
