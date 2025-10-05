@@ -6,43 +6,23 @@ public class Game {
     Scanner scanner = new Scanner(System.in);
     boolean gameIsRunning = true;
 
-    public String askForName(String message){
-        String name = "";
-        boolean isValid = false;
 
-        while(!isValid){
-            System.out.println(message);
-            name = scanner.nextLine();
-            try{
-                if(name.trim().isEmpty()){
-                    throw new Exception("Name can not be empty, please write again.");
-                }
-                isValid = true;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return name;
-    }
 
     public void run(){
-
-        String playerOneFirstName = askForName("Welcome player ONE. What is your first name?:");
-        String playerOneLastName = askForName("Nice!. What is your last name?:");
-        String playerTwoFirstName = askForName("Welcome player TWO. What is your first name?:");
-        String playerTwoLastName = askForName("Nice!. What is your last name?:");
-
 
         // INSTANTER //
         Player playerOne = new Player();
         Player playerTwo = new Player();
         // INSTANTER //
 
-        playerOne.setFirstName(playerOneFirstName);
-        playerOne.setLastName(playerOneLastName);
+        playerOne.setFirstName();
+        playerOne.setLastName();
 
-        playerTwo.setFirstName(playerTwoFirstName);
-        playerTwo.setLastName(playerTwoLastName);
+        playerTwo.setFirstName();
+        playerTwo.setLastName();
+
+
+
 
         while(gameIsRunning){            // INSTANTER //
 
